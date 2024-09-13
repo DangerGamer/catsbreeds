@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:Catsbreeds/widgets/details_cat.dart';
 import '../infrastructure/models/cat.dart';
 import '../services/cat_services.dart';
+import 'details_cat.dart';
 
 class CatList extends StatelessWidget {
   final List<Cat> cats;
