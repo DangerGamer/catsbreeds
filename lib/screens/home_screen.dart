@@ -30,9 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       final cats = await _catService.fetchCatsBreeds(filter);
-      setState(() {
+      if(cats.isNotEmpty) {
         _cats = cats;
-      });
+        setState(() {});
+      }
+      
     } catch (e) {
       setState(() {
         _errorMessage = 'Error fetching cats: $e';
@@ -45,10 +47,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _handleTextChanged(String text) {
-    setState(() {
-      _searchText = text;
-    });
-    _fetchCats(_searchText);
+    _searchText = text;
+    if(_searchText.isNotEmpty) {
+      _fetchCats(_searchText);
+      setState(() {});
+    }
   }
 
   @override

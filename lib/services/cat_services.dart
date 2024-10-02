@@ -36,23 +36,18 @@ class CatService {
     }
   }
 
-  Future<String?> fetchImageUrl(String id) async {
-    final String baseUrl = 'https://api.thecatapi.com/v1/images/search';
+  Future<String?> fetchImageUrl(String? id) async {
+    final String baseUrl = 'https://api.thecatapi.com/v1/images/$id';
 
     try {
       final response = await _dio.get(
-        baseUrl,
-        queryParameters: {
-          'api_key': 'live_99Qe4Ppj34NdplyLW67xCV7Ds0oSLKGgcWWYnSzMJY9C0QOu0HUR4azYxWkyW2nr',
-          'limit': '1',
-          'breed_ids': id,
-        },
+        baseUrl
       );
       
       if (response.statusCode == 200) {
-        final List<dynamic> data = response.data;
+        final Map<String, dynamic> data = response.data;
         if (data.isNotEmpty) {
-          return data[0]['url'];
+          return data['url'];
         }
       } else {
         throw Exception('Failed to load image URL: ${response.statusCode}');

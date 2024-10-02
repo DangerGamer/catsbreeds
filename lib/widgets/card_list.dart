@@ -5,7 +5,6 @@ import 'details_cat.dart';
 
 class CatList extends StatelessWidget {
   final List<Cat> cats;
-
   CatList({required this.cats});
 
   @override
@@ -29,7 +28,7 @@ class CatListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<String?>(
-      future: _catService.fetchImageUrl(cat.id),
+      future: _catService.fetchImageUrl(cat.referenceImageId),
       builder: (context, snapshot) {
         Widget content;
         if (snapshot.connectionState == ConnectionState.waiting) {
